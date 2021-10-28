@@ -7,11 +7,19 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 public class GameTest {
-  @Test public void testGetsWordToGuess() {
-    WordChooser wordChooser = new WordChooser();
-    Game game = new Game(wordChooser);
-    assertEquals(game.getWordToGuess(), "M_____");
+  @Test public void testGetsWordToGuessWithRandomWord() {
+    WordChooser mockedChooser = mock (WordChooser.class);
+    when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+
+    Game game = new Game(mockedChooser);
+
+    assertEquals(game.getWordToGuess(), "D________");
   }
+  // @Test public void testGetsWordToGuess() {
+  //   WordChooser wordChooser = new WordChooser();
+  //   Game game = new Game(wordChooser);
+  //   assertEquals(game.getWordToGuess(), "M_____");
+  // }
   @Test public void testGetsInitialRemainingAttempts() {
     WordChooser wordChooser = new WordChooser();
     Game game = new Game(wordChooser);
