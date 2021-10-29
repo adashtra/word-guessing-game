@@ -1,10 +1,13 @@
 package game;
 
+import java.util.ArrayList;
+
 public class Game {
   // Fields/atttributes
-  String wordToGuess;
-  int remainingAttempts = 10;
+  private String wordToGuess;
+  private int remainingAttempts = 10;
   WordChooser wordChooser;
+  private ArrayList<Character> guessedLetters = new ArrayList<Character>();
 
   // Constructor
   public Game(WordChooser wordChooser) {
@@ -22,6 +25,16 @@ public class Game {
       }
     }
     return builder.toString();
+  }
+
+  public Boolean guessLetter(Character letter) {
+    if (this.wordToGuess.indexOf(letter) != -1) {
+      guessedLetters.add(letter);
+      return true;
+    } else {
+      remainingAttempts--;
+      return false;
+    }
   }
 
   public int getRemainingAttempts() {
